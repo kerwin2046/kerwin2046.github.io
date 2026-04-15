@@ -1,9 +1,8 @@
-import { sortPosts, allCoreContent } from 'pliny/utils/contentlayer'
-import { allBlogs } from 'contentlayer/generated'
-import Main from './Main'
+import { redirect } from "next/navigation"
 
-export default async function Page() {
-  const sortedPosts = sortPosts(allBlogs)
-  const posts = allCoreContent(sortedPosts)
-  return <Main posts={posts} />
+import { routing } from "@/i18n/routing"
+
+/** GitHub Pages 静态托管不执行 middleware，根路径需显式跳到默认语言。 */
+export default function RootPage() {
+  redirect(`/${routing.defaultLocale}`)
 }
