@@ -1,4 +1,5 @@
 # Inspired from https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
+# 需在仓库 Settings → Pages 中将 Source 设为「GitHub Actions」，否则 deploy 仍会失败。
 name: GitHub Pages
 
 on:
@@ -20,12 +21,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Compute BASE_PATH for Next export
+        id: pagesbase
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo='${{ github.event.repository.name }}'
+          owner='${{ github.repository_owner }}'
+          rlc="${repo,,}"
+          olc="${owner,,}.github.io"
+          if [[ "$rlc" == "$olc" ]]; then
+            echo "User/organization Pages site → base path empty"
+            echo "base_path=" >> "$GITHUB_OUTPUT"
+          else
+            echo "Project Pages site → base path /$repo"
+            echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
-      - id: configurepages
-        uses: actions/configure-pages@v5
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -38,7 +53,7 @@ jobs:
         env:
           EXPORT: 1
           UNOPTIMIZED: 1
-          BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
+          BASE_PATH: ${{ steps.pagesbase.outputs.base_path }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
