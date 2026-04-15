@@ -1,55 +1,73 @@
-# Inspired from https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
-name: GitHub Pages
+# 常见做法：CI 构建静态站点 → 推送到 gh-pages 分支 → Pages 从该分支发布。
+#
+# 仓库设置（只做一次）：
+#   Settings → Pages → Source: Deploy from a branch
+#   Branch: gh-pages / folder: / (root)
+#
+# Settings → Actions → General → Workflow permissions:
+#   勾选 “Read and write permissions”（否则无法推送 gh-pages）
+name: Deploy GitHub Pages
 
 on:
   push:
-    branches: main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: 'pages'
-  cancel-in-progress: false
+  group: github-pages
+  cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve BASE_PATH for Next.js
+        id: site
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo='${{ github.event.repository.name }}'
+          owner='${{ github.repository_owner }}'
+          if [[ "${repo,,}" == "${owner,,}.github.io" ]]; then
+            echo "base_path=" >> "$GITHUB_OUTPUT"
+          else
+            echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: yarn
-      - id: configurepages
-        uses: actions/configure-pages@v5
-      - name: Restore cache
-        uses: actions/cache@v4
+          node-version: "20"
+          cache: npm
+
+      - uses: actions/cache@v4
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-next-${{ hashFiles('package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
-      - run: yarn
-      - run: yarn build
-        env:
-          EXPORT: 1
-          UNOPTIMIZED: 1
-          BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
+            ${{ runner.os }}-next-
 
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - run: npm ci --legacy-peer-deps
+
+      - name: Build static export
+        run: npm run build
+        env:
+          EXPORT: "1"
+          BASE_PATH: ${{ steps.site.outputs.base_path }}
+
+      # GitHub Pages 默认跑 Jekyll，会忽略 _next/；空文件关闭 Jekyll
+      - run: touch out/.nojekyll
+
+      - name: Deploy to gh-pages branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: out
+          clean: true
+          single-commit: true
