@@ -6,6 +6,8 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts")
 const nextConfig = {
   output: process.env.EXPORT === "1" ? "export" : "standalone",
   basePath: process.env.BASE_PATH || undefined,
+  // GitHub Pages 对 /path不会自动落到 path.html，用目录 + index.html 才能打开文章
+  trailingSlash: process.env.EXPORT === "1",
   env: {
     // 开发/生产环境标识，可在代码中用 process.env.NEXT_PUBLIC_APP_ENV 读取
     NEXT_PUBLIC_APP_ENV: process.env.NEXT_PUBLIC_APP_ENV ?? process.env.NODE_ENV ?? "development",
