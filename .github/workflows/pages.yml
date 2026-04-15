@@ -1,11 +1,4 @@
-# 使用 gh-pages 分支发布（不依赖 deploy-pages API，避免 “Creating Pages deployment 404”）。
-#
-# 仓库设置：Settings → Pages → Build and deployment
-#   Source: Deploy from a branch
-#   Branch: gh-pages  /  / (root)
-#
-# 若组织/仓库默认 GITHUB_TOKEN 只读：Settings → Actions → General → Workflow permissions
-#   勾选 “Read and write permissions”
+# Inspired from https://github.com/actions/starter-workflows/blob/main/pages/nextjs.yml
 name: GitHub Pages
 
 on:
@@ -14,59 +7,49 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: pages
+  group: 'pages'
   cancel-in-progress: false
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Compute BASE_PATH for Next export
-        id: pagesbase
-        shell: bash
-        run: |
-          set -euo pipefail
-          repo='${{ github.event.repository.name }}'
-          owner='${{ github.repository_owner }}'
-          rlc="${repo,,}"
-          olc="${owner,,}.github.io"
-          if [[ "$rlc" == "$olc" ]]; then
-            echo "User/organization Pages site → base path empty"
-            echo "base_path=" >> "$GITHUB_OUTPUT"
-          else
-            echo "Project Pages site → base path /$repo"
-            echo "base_path=/${repo}" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: npm
-
-      - uses: actions/cache@v4
+          node-version: '20'
+          cache: yarn
+      - id: configurepages
+        uses: actions/configure-pages@v5
+      - name: Restore cache
+        uses: actions/cache@v4
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-
-      - run: npm ci --legacy-peer-deps
-
-      - run: npm run build
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+      - run: yarn
+      - run: yarn build
         env:
           EXPORT: 1
           UNOPTIMIZED: 1
-          BASE_PATH: ${{ steps.pagesbase.outputs.base_path }}
-
-      # enable_jekyll: false → 写入 .nojekyll，否则 GitHub Pages 会忽略 _next/ 等下划线目录
-      - name: Push static site to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+          BASE_PATH: ${{ steps.configurepages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          enable_jekyll: false
+          path: ./out
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
