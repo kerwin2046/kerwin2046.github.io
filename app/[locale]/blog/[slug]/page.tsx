@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import { Navigation, Footer } from "@/components/layout"
-import { getPostBySlug, getPostSlugs } from "@/lib/content/blog"
+import { getPostBySlug, getPostSlugs, getPosts } from "@/lib/content/blog"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { ArrowLeft } from "lucide-react"
@@ -14,6 +14,7 @@ import { Children, isValidElement, type ReactNode } from "react"
 import { extractTocFromMarkdown, estimateReadingMinutes, slugifyHeading } from "@/lib/content/markdown-utils"
 import { TocNav } from "@/components/blog/toc-nav"
 import { ReadingProgress } from "@/components/blog/reading-progress"
+import { PostSidebar } from "@/components/blog/post-sidebar"
 
 function toPlainText(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node)
@@ -143,11 +144,12 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const post = getPostBySlug(slug)
   if (!post) notFound()
 
   const t = await getTranslations("blog")
+  const posts = getPosts()
   const toc = extractTocFromMarkdown(post.content)
   const readingMinutes = estimateReadingMinutes(post.content)
 
@@ -156,56 +158,59 @@ export default async function BlogPostPage({ params }: Props) {
       <ReadingProgress />
       <Navigation />
       <article className="container mx-auto px-4 py-16 md:py-24">
-        <div className="mx-auto flex w-full max-w-6xl items-start gap-10">
-          <div className="max-w-3xl w-full xl:flex-1">
-          <Button asChild variant="outline" className="mb-8 border-[3px] border-black rounded-xl">
-            <Link href="/blog">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              {t("backList")}
-            </Link>
-          </Button>
+        <div className="mx-auto flex w-full max-w-[1600px] items-start gap-8">
+          <PostSidebar posts={posts} activeSlug={slug} locale={locale} />
 
-          {(() => {
-            const coverSrc = post.image || `https://picsum.photos/seed/${encodeURIComponent(post.slug)}/800/450`
-            return (
-              <div className="relative w-full aspect-video bg-[#EDEDED] rounded-2xl overflow-hidden mb-8 border-[3px] border-black">
-                <Image src={coverSrc} alt="" fill className="object-cover" sizes="(max-width: 768px) 100vw, 672px" />
-                {post.tag && (
-                  <span className="absolute top-4 right-4 bg-black text-white text-sm font-semibold px-4 py-2 rounded-lg">
-                    {post.tag}
-                  </span>
-                )}
-              </div>
-            )
-          })()}
-
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              {post.title}
-            </h1>
-            <p className="text-gray-600 text-base md:text-lg mb-2">
-              {post.description}
-            </p>
-            <p className="text-gray-500 text-sm">
-              {post.author} · {post.date} · {readingMinutes} min read
-            </p>
-          </header>
-
-          <div className="blog-body max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-              {post.content}
-            </ReactMarkdown>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-black">
-            <Button asChild variant="outline" className="border-[3px] border-black rounded-xl">
+          <div className="w-full max-w-3xl xl:flex-1">
+            <Button asChild variant="outline" className="mb-8 border-[3px] border-black rounded-xl">
               <Link href="/blog">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 {t("backList")}
               </Link>
             </Button>
+
+            {(() => {
+              const coverSrc = post.image || `https://picsum.photos/seed/${encodeURIComponent(post.slug)}/800/450`
+              return (
+                <div className="relative w-full aspect-video bg-[#EDEDED] rounded-2xl overflow-hidden mb-8 border-[3px] border-black">
+                  <Image src={coverSrc} alt="" fill className="object-cover" sizes="(max-width: 768px) 100vw, 672px" />
+                  {post.tag && (
+                    <span className="absolute top-4 right-4 bg-black text-white text-sm font-semibold px-4 py-2 rounded-lg">
+                      {post.tag}
+                    </span>
+                  )}
+                </div>
+              )
+            })()}
+
+            <header className="mb-8">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                {post.title}
+              </h1>
+              <p className="text-gray-600 text-base md:text-lg mb-2">
+                {post.description}
+              </p>
+              <p className="text-gray-500 text-sm">
+                {post.author} · {post.date} · {readingMinutes} min read
+              </p>
+            </header>
+
+            <div className="blog-body max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                {post.content}
+              </ReactMarkdown>
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-black">
+              <Button asChild variant="outline" className="border-[3px] border-black rounded-xl">
+                <Link href="/blog">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  {t("backList")}
+                </Link>
+              </Button>
+            </div>
           </div>
-        </div>
+
           <TocNav items={toc} />
         </div>
       </article>
