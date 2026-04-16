@@ -1,32 +1,25 @@
-# 常见做法：CI 构建静态站点 → 推送到 gh-pages 分支 → Pages 从该分支发布。
-#
-# 仓库设置（只做一次）：
-#   Settings → Pages → Source: Deploy from a branch
-#   Branch: gh-pages / folder: / (root)
-#
-# Settings → Actions → General → Workflow permissions:
-#   勾选 “Read and write permissions”（否则无法推送 gh-pages）
 name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: github-pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/configure-pages@v5
 
       - name: Resolve BASE_PATH for Next.js
         id: site
@@ -64,10 +57,18 @@ jobs:
       # GitHub Pages 默认跑 Jekyll，会忽略 _next/；空文件关闭 Jekyll
       - run: touch out/.nojekyll
 
-      - name: Deploy to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages
-          folder: out
-          clean: true
-          single-commit: true
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
