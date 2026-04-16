@@ -10,7 +10,22 @@ import { getTranslations } from "next-intl/server"
 import { Link } from "@/i18n/navigation"
 import type { Components } from "react-markdown"
 import { MarkdownCodeBlock } from "@/components/blog/markdown-code-block"
-import { Children, isValidElement } from "react"
+import { Children, isValidElement, type ReactNode } from "react"
+import { extractTocFromMarkdown, estimateReadingMinutes, slugifyHeading } from "@/lib/content/markdown-utils"
+import { TocNav } from "@/components/blog/toc-nav"
+import { ReadingProgress } from "@/components/blog/reading-progress"
+
+function toPlainText(node: ReactNode): string {
+  if (typeof node === "string" || typeof node === "number") return String(node)
+  if (!node) return ""
+  if (Array.isArray(node)) return node.map(toPlainText).join("")
+  if (isValidElement(node)) return toPlainText(node.props.children)
+  return ""
+}
+
+function headingId(children: ReactNode): string {
+  return slugifyHeading(toPlainText(children))
+}
 
 const markdownComponents: Components = {
   h1: ({ children }) => (
@@ -19,13 +34,25 @@ const markdownComponents: Components = {
     </h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight mt-10 mb-4 text-[#0B0B0B] scroll-mt-24">
+    <h2
+      id={headingId(children)}
+      className="group text-2xl md:text-3xl font-bold tracking-tight leading-tight mt-10 mb-4 text-[#0B0B0B] scroll-mt-24"
+    >
       {children}
+      <a href={`#${headingId(children)}`} aria-label="Anchor" className="ml-2 text-[#9CA3AF] opacity-0 transition group-hover:opacity-100">
+        #
+      </a>
     </h2>
   ),
   h3: ({ children }) => (
-    <h3 className="text-xl md:text-2xl font-semibold tracking-tight leading-tight mt-8 mb-3 text-[#0B0B0B]">
+    <h3
+      id={headingId(children)}
+      className="group text-xl md:text-2xl font-semibold tracking-tight leading-tight mt-8 mb-3 text-[#0B0B0B] scroll-mt-24"
+    >
       {children}
+      <a href={`#${headingId(children)}`} aria-label="Anchor" className="ml-2 text-[#9CA3AF] opacity-0 transition group-hover:opacity-100">
+        #
+      </a>
     </h3>
   ),
   p: ({ children }) => (
@@ -121,12 +148,16 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const t = await getTranslations("blog")
+  const toc = extractTocFromMarkdown(post.content)
+  const readingMinutes = estimateReadingMinutes(post.content)
 
   return (
     <main className="min-h-screen bg-[#FFFFFF]">
+      <ReadingProgress />
       <Navigation />
       <article className="container mx-auto px-4 py-16 md:py-24">
-        <div className="max-w-3xl mx-auto">
+        <div className="mx-auto flex w-full max-w-6xl items-start gap-10">
+          <div className="max-w-3xl w-full xl:flex-1">
           <Button asChild variant="outline" className="mb-8 border-[3px] border-black rounded-xl">
             <Link href="/blog">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -156,7 +187,7 @@ export default async function BlogPostPage({ params }: Props) {
               {post.description}
             </p>
             <p className="text-gray-500 text-sm">
-              {post.author} · {post.date}
+              {post.author} · {post.date} · {readingMinutes} min read
             </p>
           </header>
 
@@ -174,6 +205,8 @@ export default async function BlogPostPage({ params }: Props) {
               </Link>
             </Button>
           </div>
+        </div>
+          <TocNav items={toc} />
         </div>
       </article>
       <Footer />
