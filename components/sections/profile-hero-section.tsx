@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation"
 import { siteConfig } from "@/config/site"
 import { getTranslations } from "next-intl/server"
 
-export async function HeroSection() {
+export async function ProfileHeroSection() {
   const t = await getTranslations("hero")
 
   return (

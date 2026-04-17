@@ -1,30 +1,29 @@
-import { Navigation, Footer } from "@/components/layout"
+import { Navigation } from "@/components/layout"
+import { CinematicHeroSection } from "@/components/sections"
 import {
-  HeroSection,
-  LogoMarquee,
-  ServicesSection,
-  AboutSection,
-  PortfolioSection,
-  ExperienceSection,
-  TestimonialsSection,
-  ArticlesSection,
-} from "@/components/sections"
-import { getPosts } from "@/lib/content/blog"
+  PhilosophySection,
+  FeaturedProductsSection,
+  LandingTechnologySection,
+  LandingGallerySection,
+  CollectionSection,
+  EditorialSection,
+  LandingStatementSection,
+  LandingFooterSection,
+} from "@/components/template-landing"
 
-export default async function Home() {
-  const latestPosts = getPosts(3)
+export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FFFFFF]">
+    <main className="min-h-screen bg-background">
+      <CinematicHeroSection />
       <Navigation />
-      <HeroSection />
-      <LogoMarquee />
-      <ServicesSection />
-      <AboutSection />
-      <PortfolioSection />
-      <ExperienceSection />
-      <TestimonialsSection />
-      <ArticlesSection posts={latestPosts} />
-      <Footer />
+      <PhilosophySection />
+      <FeaturedProductsSection />
+      <LandingTechnologySection />
+      <LandingGallerySection />
+      <CollectionSection />
+      <EditorialSection />
+      <LandingStatementSection />
+      <LandingFooterSection />
     </main>
   )
 }

@@ -30,6 +30,9 @@ export function Navigation() {
           <Link href="/blog" className="text-[18px] font-bold leading-[20px] hover:opacity-70 transition-opacity">
             {t("blog")}
           </Link>
+          <Link href="/profile" className="text-[18px] font-bold leading-[20px] hover:opacity-70 transition-opacity">
+            {t("profile")}
+          </Link>
           <Link href="/demo" className="text-[18px] font-bold leading-[20px] hover:opacity-70 transition-opacity">
             {t("demo")}
           </Link>

@@ -1,0 +1,8 @@
+export { PhilosophySection } from "./philosophy-section"
+export { FeaturedProductsSection } from "./featured-products-section"
+export { LandingTechnologySection } from "./landing-technology-section"
+export { LandingGallerySection } from "./landing-gallery-section"
+export { CollectionSection } from "./collection-section"
+export { EditorialSection } from "./editorial-section"
+export { LandingStatementSection } from "./landing-statement-section"
+export { LandingFooterSection } from "./landing-footer-section"

@@ -1,4 +1,5 @@
-export { HeroSection } from "./hero-section"
+export { CinematicHeroSection } from "./cinematic-hero-section"
+export { ProfileHeroSection } from "./profile-hero-section"
 export { AboutSection } from "./about-section"
 export { ServicesSection } from "./services-section"
 export { PortfolioSection } from "./portfolio-section"

@@ -4,7 +4,108 @@
     "about": "关于",
     "portfolio": "作品",
     "blog": "博客",
+    "profile": "简介",
     "demo": "Chat"
+  },
+  "cinematicHero": {
+    "headline": "KERWIN",
+    "centerImageAlt": "山脊与山谷光线",
+    "sideAlt0": "晨雾中的山径",
+    "sideAlt1": "星空下的营地",
+    "sideAlt2": "林间柔光小路",
+    "sideAlt3": "暮色中的湖面",
+    "taglineLine1": "TypeScript 全栈，追求可维护与可迭代。",
+    "taglineLine2": "相信能交付、能迭代的系统，比堆砌名词更重要。"
+  },
+  "landing": {
+    "philosophy": {
+      "heroTitle": "交付产品，而不是堆幻灯片。",
+      "kicker": "工作方式",
+      "body": "从粗糙原型到线上环境：TypeScript 优先的栈、UI 与服务之间清晰的边界，以及能扛过真实交接的文档——而不只是第一场演示。",
+      "leftBadge": "产品界面",
+      "rightBadge": "平台与接口",
+      "leftImageAlt": "暖色户外光下的产品静物",
+      "rightImageAlt": "森林色调产品场景"
+    },
+    "featured": {
+      "titleLine1": "扛得住演示之后的日子。",
+      "titleLine2": "为后面十次发布而设计。",
+      "eyebrow": "能力象限",
+      "items": [
+        { "category": "前端", "title": "React、Next.js 与 TypeScript 界面" },
+        { "category": "后端", "title": "Node.js 服务、API 与数据建模" },
+        { "category": "全栈", "title": "从想法到上线的端到端交付" },
+        { "category": "工程化", "title": "CI/CD、可观测与稳定发布" },
+        { "category": "AI", "title": "LLM 流水线、RAG 与场景化的 Agent" },
+        { "category": "写作", "title": "博客里记录取舍、踩坑与工具链" }
+      ]
+    },
+    "technology": {
+      "centerImageAlt": "界面与工作流拼贴",
+      "sideAlt0": "构建",
+      "sideAlt1": "度量",
+      "sideAlt2": "集成",
+      "sideAlt3": "发布",
+      "word0": "TypeScript",
+      "word1": "接上",
+      "word2": "生产环境。",
+      "revealText": "我更在意「敢改」的系统：边界上有明确契约，测试花在刀刃上，线上出问题能追日志与指标。工作大多落在产品体验与可靠后端之间——交付功能，同时不把团队逼进死胡同。"
+    },
+    "gallery": {
+      "alts": [
+        "骑行场景中的保温杯",
+        "湖畔保温杯",
+        "水中保温杯",
+        "溪边保温杯",
+        "篝火旁保温杯",
+        "雪地保温杯",
+        "山间保温杯",
+        "峡谷保温杯"
+      ]
+    },
+    "toolbox": {
+      "title": "工具箱里还有什么",
+      "items": [
+        { "id": 1, "title": "类型即文档", "description": "在边界上用好 TypeScript，让重构保持无聊但安全。", "note": "默认" },
+        { "id": 2, "title": "值得的测试", "description": "围绕资金路径和复杂状态写测试，而不是追求虚荣覆盖率。", "note": "信心" },
+        { "id": 3, "title": "有人看的文档", "description": "README、ADR、运维说明写给下一个维护者。", "note": "交接" },
+        { "id": 4, "title": "可组合 UI", "description": "设计系统与组件：约束清晰，并考虑可访问性。", "note": "界面" },
+        { "id": 5, "title": "自动化代替仪式感", "description": "脚本、模板与 CI，减少重复的人工失误。", "note": "速度" },
+        { "id": 6, "title": "能量化的性能", "description": "分析、度量、修热点——够用就停。", "note": "务实" }
+      ]
+    },
+    "editorial": {
+      "specs": [
+        { "label": "方向", "value": "TS 全栈" },
+        { "label": "坐标", "value": "中国" },
+        { "label": "写作", "value": "博客" },
+        { "label": "开源", "value": "有" }
+      ],
+      "bannerAlt": "宽幅配图"
+    },
+    "statement": {
+      "quote": "我是 Kerwin，来自中国的一名 TS 全栈工程师。喜欢用 React 与 Node 做可维护的交付，在合适的地方把 LLM 用在刀刃上，也愿意把深夜踩坑写成博客里的段子。",
+      "imageAlt": "底部宣言区配图"
+    },
+    "footer": {
+      "brandTagline": "TypeScript、React、Node 与务实的 AI——做可维护的系统，也记录交付过程中真实的一团乱麻。",
+      "onThisPage": "本页",
+      "site": "站点",
+      "connect": "联系",
+      "copyright": "Kerwin · TS 全栈工程师",
+      "onPageLinks": [
+        { "label": "焦点", "href": "#focus" },
+        { "label": "能力", "href": "#capabilities" },
+        { "label": "作品带", "href": "#gallery" },
+        { "label": "工具箱", "href": "#toolbox" }
+      ],
+      "siteLinks": [
+        { "label": "简介", "href": "/profile" },
+        { "label": "博客", "href": "/blog" }
+      ],
+      "connectGithub": "GitHub",
+      "connectEmail": "邮件"
+    }
   },
   "hero": {
     "titleName": "Kerwin",

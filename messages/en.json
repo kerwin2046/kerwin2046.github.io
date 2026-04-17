@@ -4,7 +4,108 @@
     "about": "About",
     "portfolio": "Portfolio",
     "blog": "Blog",
+    "profile": "Profile",
     "demo": "Chat"
+  },
+  "cinematicHero": {
+    "headline": "KERWIN",
+    "centerImageAlt": "Alpine ridge and valley light",
+    "sideAlt0": "Mountain trail in morning haze",
+    "sideAlt1": "Camp under a starry sky",
+    "sideAlt2": "Forest path in soft light",
+    "sideAlt3": "Calm lake at dusk",
+    "taglineLine1": "TypeScript full stack—maintainable systems that ship.",
+    "taglineLine2": "What runs and iterates matters more than buzzwords."
+  },
+  "landing": {
+    "philosophy": {
+      "heroTitle": "Ship products, not slide decks.",
+      "kicker": "How I work",
+      "body": "From rough prototypes to production: TypeScript-first stacks, clear boundaries between UI and services, and documentation that survives real handoffs—not just the first demo.",
+      "leftBadge": "Product UI",
+      "rightBadge": "Platforms & APIs",
+      "leftImageAlt": "Product still in warm outdoor light",
+      "rightImageAlt": "Forest-themed product scene"
+    },
+    "featured": {
+      "titleLine1": "Built to survive the demo.",
+      "titleLine2": "Designed for the next ten releases.",
+      "eyebrow": "Practice areas",
+      "items": [
+        { "category": "Frontend", "title": "React, Next.js & TypeScript interfaces" },
+        { "category": "Backend", "title": "Node.js services, APIs & data modeling" },
+        { "category": "Full-stack", "title": "End-to-end delivery from idea to deploy" },
+        { "category": "Platform", "title": "CI/CD, observability & stable releases" },
+        { "category": "AI", "title": "LLM pipelines, RAG & agents where they belong" },
+        { "category": "Writing", "title": "Blog notes on tradeoffs, pitfalls and tooling" }
+      ]
+    },
+    "technology": {
+      "centerImageAlt": "Interface and workflow collage",
+      "sideAlt0": "Build",
+      "sideAlt1": "Measure",
+      "sideAlt2": "Integrate",
+      "sideAlt3": "Release",
+      "word0": "TypeScript",
+      "word1": "Meets",
+      "word2": "Production.",
+      "revealText": "I care about systems you can refactor without fear: explicit contracts, tests where they buy confidence, and observability when things go wrong in production. Most of my work sits between product UX and reliable backends—shipping features without painting the team into a corner."
+    },
+    "gallery": {
+      "alts": [
+        "Thermal bottle on bike",
+        "Thermal bottle by lake",
+        "Thermal bottle in water",
+        "Thermal bottle by stream",
+        "Thermal bottle by fire",
+        "Thermal bottle in snow",
+        "Thermal bottle on mountain",
+        "Thermal bottle at canyon"
+      ]
+    },
+    "toolbox": {
+      "title": "Also in the toolbox",
+      "items": [
+        { "id": 1, "title": "Types as documentation", "description": "Lean on TypeScript at boundaries so refactors stay boring.", "note": "Default" },
+        { "id": 2, "title": "Tests that earn their keep", "description": "Targeted coverage around money paths and tricky state—not vanity metrics.", "note": "Confidence" },
+        { "id": 3, "title": "Docs someone will read", "description": "READMEs, ADRs and runbooks written for the next maintainer.", "note": "Handoff" },
+        { "id": 4, "title": "Composable UI", "description": "Design systems and components with sane constraints and a11y in mind.", "note": "UI" },
+        { "id": 5, "title": "Automation over ceremony", "description": "Scripts, templates and CI steps to remove repeated human error.", "note": "Velocity" },
+        { "id": 6, "title": "Performance you can prove", "description": "Profile, measure, fix hotspots—then stop when good enough.", "note": "Pragmatic" }
+      ]
+    },
+    "editorial": {
+      "specs": [
+        { "label": "Focus", "value": "Full-stack TS" },
+        { "label": "Base", "value": "China" },
+        { "label": "Writing", "value": "Blog" },
+        { "label": "OSS", "value": "Yes" }
+      ],
+      "bannerAlt": "Wide banner still"
+    },
+    "statement": {
+      "quote": "I'm Kerwin—a TS full-stack engineer from China. I like shipping maintainable systems with React and Node, squeezing real value out of LLMs where it fits, and turning late-night debugging into stories on the blog.",
+      "imageAlt": "Closing band visual"
+    },
+    "footer": {
+      "brandTagline": "TypeScript, React, Node and pragmatic AI—shipping maintainable systems and writing about the messy middle.",
+      "onThisPage": "On this page",
+      "site": "Site",
+      "connect": "Connect",
+      "copyright": "Kerwin · TS full-stack engineer",
+      "onPageLinks": [
+        { "label": "Focus", "href": "#focus" },
+        { "label": "Capabilities", "href": "#capabilities" },
+        { "label": "Work strip", "href": "#gallery" },
+        { "label": "Toolbox", "href": "#toolbox" }
+      ],
+      "siteLinks": [
+        { "label": "Profile", "href": "/profile" },
+        { "label": "Blog", "href": "/blog" }
+      ],
+      "connectGithub": "GitHub",
+      "connectEmail": "Email"
+    }
   },
   "hero": {
     "titleName": "Kerwin",
