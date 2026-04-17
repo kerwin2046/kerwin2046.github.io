@@ -1,13 +1,12 @@
 /**
- * 首页配图：仅「首屏电影感」使用 Unsplash 风景；其余区块用本地 public资源。
- * 换首屏图：改 cinematic；换其余图：改对应 `/images/...` 或放入 public 后改路径。
+ * 首页配图：首屏中间图为本地；首屏侧边等仍可用 Unsplash；其余区块见下方 `/images/...`。
  */
 const u = (id: string, w: number) =>
   `https://images.unsplash.com/${id}?q=80&w=${w}&auto=format&fit=crop`
 
 export const landingMedia = {
   cinematic: {
-    center: u("photo-1506905925346-21bda4d32df4", 2000),
+    center: "/images/hero-main.png",
     sides: [
       u("photo-1517824806704-9040b037703b", 1200),
       u("photo-1510312305653-8ed496efae75", 1200),

@@ -1,5 +1,7 @@
-import { Navigation } from "@/components/layout"
 import { CinematicHeroSection } from "@/components/sections"
+
+/* 首页其余区块暂注释，需要时逐段取消注释即可。
+import { Navigation } from "@/components/layout"
 import {
   PhilosophySection,
   FeaturedProductsSection,
@@ -10,11 +12,14 @@ import {
   LandingStatementSection,
   LandingFooterSection,
 } from "@/components/template-landing"
+*/
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <CinematicHeroSection />
+
+      {/*
       <Navigation />
       <PhilosophySection />
       <FeaturedProductsSection />
@@ -24,6 +29,7 @@ export default function Home() {
       <EditorialSection />
       <LandingStatementSection />
       <LandingFooterSection />
+      */}
     </main>
   )
 }
