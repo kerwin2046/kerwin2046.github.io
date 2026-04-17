@@ -57,15 +57,15 @@ export function CinematicHeroSection() {
 
   return (
     <section ref={sectionRef} className="relative bg-background">
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="relative h-full w-full">
-          <div className="flex h-full w-full items-center justify-center">
+      <div className="sticky top-0 h-[100dvh] min-h-screen max-h-[100dvh] overflow-hidden">
+        <div className="relative h-full min-h-0 w-full">
+          <div className="flex h-full min-h-0 w-full items-stretch justify-center">
             <div
-              className="relative flex h-full w-full items-stretch justify-center"
+              className="relative flex h-full min-h-0 w-full items-stretch justify-center"
               style={{
                 gap: `${gap}px`,
                 padding: `${imageProgress * 16}px`,
-                paddingBottom: `${60 + imageProgress * 40}px`,
+                paddingBottom: `${imageProgress * 40}px`,
               }}
             >
             <div
