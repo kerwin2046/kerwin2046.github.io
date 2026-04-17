@@ -15,7 +15,14 @@
     "sideAlt2": "Forest path in soft light",
     "sideAlt3": "Calm lake at dusk",
     "taglineLine1": "TypeScript full stack—maintainable systems that ship.",
-    "taglineLine2": "What runs and iterates matters more than buzzwords."
+    "taglineLine2": "What runs and iterates matters more than buzzwords.",
+    "navAriaLabel": "Enter site",
+    "enterHint": "pick a door —",
+    "linkProfile": "Profile",
+    "linkBlog": "Blog",
+    "linkDemo": "Chat",
+    "linkEmail": "Email",
+    "linkGithub": "GitHub"
   },
   "landing": {
     "philosophy": {

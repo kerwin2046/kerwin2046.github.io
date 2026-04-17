@@ -15,7 +15,14 @@
     "sideAlt2": "林间柔光小路",
     "sideAlt3": "暮色中的湖面",
     "taglineLine1": "TypeScript 全栈，追求可维护与可迭代。",
-    "taglineLine2": "相信能交付、能迭代的系统，比堆砌名词更重要。"
+    "taglineLine2": "相信能交付、能迭代的系统，比堆砌名词更重要。",
+    "navAriaLabel": "站点入口",
+    "enterHint": "从这儿进 —",
+    "linkProfile": "简介",
+    "linkBlog": "博客",
+    "linkDemo": "Chat",
+    "linkEmail": "邮件",
+    "linkGithub": "GitHub"
   },
   "landing": {
     "philosophy": {

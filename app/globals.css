@@ -157,3 +157,40 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* 首屏入口链接：轻微浮动，增强「乱中有序」 */
+@keyframes hero-link-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(1px, -2px);
+  }
+  66% {
+    transform: translate(-2px, 1px);
+  }
+}
+
+.hero-enter-link {
+  text-shadow:
+    0 0 1px rgba(0, 0, 0, 0.9),
+    0 2px 20px rgba(0, 0, 0, 0.55);
+}
+.hero-enter-link:hover {
+  text-shadow:
+    0 0 1px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(255, 255, 255, 0.35);
+}
+
+.animate-hero-float {
+  animation: hero-link-float 5s ease-in-out infinite;
+}
+.animate-hero-float-slow {
+  animation: hero-link-float 6.5s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+.animate-hero-float-fast {
+  animation: hero-link-float 3.8s ease-in-out infinite;
+  animation-delay: 1.1s;
+}
