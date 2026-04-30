@@ -1,7 +1,7 @@
 ---
 title: "Python爬虫实战：反爬机制应对与数据采集"
 description: "本文从爬虫架构师视角，系统讲解Python爬虫的核心技术栈：requests会话管理、cloudscraper反反爬、BeautifulSoup/XPath双引擎解析、Excel数据持久化，以及实战项目Automate展会数据的分布式采集方案。"
-date: "2025-04-30"
+date: "2026-04-30"
 author: "Kerwin"
 tag: "爬虫"
 ---

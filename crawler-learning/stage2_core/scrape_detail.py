@@ -9,7 +9,7 @@ def scrape_detail(url, scraper):
         resp = scraper.get(url, timeout=30)
         resp.encoding = "utf-8"
         if resp.status_code != 200:
-            return None, None, None, None
+            return None, None, None, None, None
 
         soup = BeautifulSoup(resp.text, "lxml")
 
@@ -18,6 +18,7 @@ def scrape_detail(url, scraper):
 
         address = ""
         website = ""
+        email = ""
 
         gc_six = soup.select_one("div.gridcol.six")
         if gc_six:
@@ -57,16 +58,23 @@ def scrape_detail(url, scraper):
                 if address:
                     break
 
+        # 提取邮箱（处理 Click Here to Contact 隐藏邮箱）
+        email_span = soup.select_one("span#showEM")
+        if email_span:
+            email_a = email_span.select_one("a")
+            if email_a:
+                email = email_a.text.strip()
+
         desc_div = soup.select_one("div.exhibitor-description")
         description = ""
         if desc_div:
             paragraphs = desc_div.select("p")
             description = " ".join(p.text.strip() for p in paragraphs if p.text.strip())
 
-        return name, address, website, description
+        return name, address, website, description, email
     except Exception as e:
         print(f"Error: {url} - {e}")
-        return None, None, None, None
+        return None, None, None, None, None
 
 
 def main():
@@ -91,9 +99,9 @@ def main():
     new_ws.title = "展商详情"
 
     # 设置表头
-    headers = ["链接", "原名称", "展位号", "公司名称", "地址", "官网", "描述"]
+    headers = ["链接", "原名称", "展位号", "公司名称", "地址", "官网", "描述", "邮箱"]
     for col, h in enumerate(headers, 1):
-        new_ws.cell(row=1, column=col, value=h)  # 设置表头
+        new_ws.cell(row=1, column=col, value=h)
 
     # 读取原始 Excel 文件
     original_wb = openpyxl.load_workbook("exhibitors_full.xlsx")
@@ -111,16 +119,16 @@ def main():
         new_ws.cell(row=idx + 2, column=3, value=booth)
 
         # 获取展商详情
-        detail_name, address, website, description = scrape_detail(link, scraper)
+        detail_name, address, website, description, email = scrape_detail(link, scraper)
 
         if detail_name:
-            # 设置新的 Excel 文件的表头
             new_ws.cell(row=idx + 2, column=4, value=detail_name)
-            new_ws.cell(row=idx + 2, column=5, value=address)  # 设置地址
-            new_ws.cell(row=idx + 2, column=6, value=website)  # 设置官网
-            new_ws.cell(row=idx + 2, column=7, value=description)  # 设置描述
+            new_ws.cell(row=idx + 2, column=5, value=address)
+            new_ws.cell(row=idx + 2, column=6, value=website)
+            new_ws.cell(row=idx + 2, column=7, value=description)
+            new_ws.cell(row=idx + 2, column=8, value=email)
             if (idx + 1) % 10 == 0:
-                print(f"[{idx + 1}/{len(links)}] {detail_name}")
+                print(f"[{idx + 1}/{len(links)}] {detail_name} | 邮箱: {email}")
         else:
             print(f"[{idx + 1}/{len(links)}] Failed: {link}")
 
