@@ -82,34 +82,43 @@ def main():
 
     print(f"共有 {len(links)} 个展商链接")
 
+    # 创建云爬虫
     scraper = cloudscraper.create_scraper()
 
+    # 创建新的 Excel 文件
     new_wb = openpyxl.Workbook()
     new_ws = new_wb.active
     new_ws.title = "展商详情"
 
+    # 设置表头
     headers = ["链接", "原名称", "展位号", "公司名称", "地址", "官网", "描述"]
     for col, h in enumerate(headers, 1):
-        new_ws.cell(row=1, column=col, value=h)
+        new_ws.cell(row=1, column=col, value=h)  # 设置表头
 
+    # 读取原始 Excel 文件
     original_wb = openpyxl.load_workbook("exhibitors_full.xlsx")
     original_ws = original_wb.active
 
+    # 遍历展商链接
     for idx, (original_row, link) in enumerate(links):
+        # 获取原始名称和展位号
         name = original_ws.cell(row=original_row, column=2).value or ""
         booth = original_ws.cell(row=original_row, column=3).value or ""
 
+        # 设置新的 Excel 文件的表头
         new_ws.cell(row=idx + 2, column=1, value=link)
         new_ws.cell(row=idx + 2, column=2, value=name)
         new_ws.cell(row=idx + 2, column=3, value=booth)
 
+        # 获取展商详情
         detail_name, address, website, description = scrape_detail(link, scraper)
 
         if detail_name:
+            # 设置新的 Excel 文件的表头
             new_ws.cell(row=idx + 2, column=4, value=detail_name)
-            new_ws.cell(row=idx + 2, column=5, value=address)
-            new_ws.cell(row=idx + 2, column=6, value=website)
-            new_ws.cell(row=idx + 2, column=7, value=description)
+            new_ws.cell(row=idx + 2, column=5, value=address)  # 设置地址
+            new_ws.cell(row=idx + 2, column=6, value=website)  # 设置官网
+            new_ws.cell(row=idx + 2, column=7, value=description)  # 设置描述
             if (idx + 1) % 10 == 0:
                 print(f"[{idx + 1}/{len(links)}] {detail_name}")
         else:
