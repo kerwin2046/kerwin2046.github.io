@@ -65,10 +65,21 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+void printArray(int *arr, int size){
+    for(int i = 0;i<size;i++){
+        printf("%d ",*(arr+i));
+    }
+    printf("\n");
+}
+
+
+
 int main(){
     int arr[5] = {1,2,3,4,5};
-    for(int i = 0;i<5;i++){
-        printf("%d ",arr[i]);
-    }
+    // 数组名就是数组首元素的地址
+    int *p = arr;
+    // p 是数组首元素的地址
+    printArray(p,5);
     return 0;
 }
