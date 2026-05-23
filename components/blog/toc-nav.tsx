@@ -65,7 +65,7 @@ export function TocNav({ items }: TocNavProps) {
                   key={item.id}
                   href={`#${item.id}`}
                   className={`block transition-all hover:translate-x-[2px] leading-[24px] ${
-                    isSubHeading ? "pl-4 text-xs font-mono" : "text-sm font-bold font-sans"
+                    isSubHeading ? "pl-4 text-xs font-sans" : "text-sm font-bold font-sans"
                   } ${
                     isActive
                       ? "text-blue-600 font-extrabold"

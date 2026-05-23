@@ -135,13 +135,13 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             {/* Artistic Highlighter brush underline on the title */}
             <div className="h-4 w-[280px] md:w-[420px] bg-yellow-300/60 absolute bottom-[-4px] left-1/2 transform -translate-x-1/2 -z-10 rounded-full blur-[1px]" />
 
-            <p className="text-gray-600 text-base md:text-xl font-mono mt-6 font-bold max-w-xl mx-auto font-typewriter">
+            <p className="text-gray-600 text-base md:text-xl font-sans mt-6 font-bold max-w-xl mx-auto">
               {t("subtitle")}
             </p>
           </div>
 
           {posts.length === 0 ? (
-            <p className="text-gray-500 font-mono text-center py-12">{t("noPosts")}</p>
+            <p className="text-gray-500 font-sans text-center py-12">{t("noPosts")}</p>
           ) : (
             <BlogList posts={posts} categories={categories} />
           )}
@@ -150,10 +150,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             {/* Back Home Sketchy Button */}
             <Link
               href="/"
-              className="relative inline-flex items-center justify-center px-10 py-4 text-base font-bold text-gray-800 bg-white border-[3px] border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-px active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all font-mono"
+              className="relative inline-flex items-center justify-center px-10 py-4 text-base font-bold text-gray-800 bg-white border-[3px] border-black rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] active:translate-y-px active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all font-sans"
             >
               <span>{locale === "zh" ? "返回首页" : "Back to Home"}</span>
-              <span className="font-mono text-gray-400 ml-1.5">➔</span>
+              <span className="font-sans text-gray-400 ml-1.5">➔</span>
             </Link>
           </div>
         </div>

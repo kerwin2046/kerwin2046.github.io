@@ -194,7 +194,7 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
               <span className="relative z-10 flex items-center gap-2">
                 <Mail className="w-5 h-5 shrink-0" />
                 <span>{t("hero.getInTouch")}</span>
-                <span className="font-mono text-white/50 ml-1">➔</span>
+                <span className="font-sans text-white/50 ml-1">➔</span>
               </span>
             </a>
 
@@ -205,7 +205,7 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
             >
               <FileText className="w-5 h-5 mr-2 shrink-0" />
               <span>{t("hero.viewBlog")}</span>
-              <span className="font-mono text-gray-400 ml-1">➔</span>
+              <span className="font-sans text-gray-400 ml-1">➔</span>
             </Link>
           </div>
 
@@ -214,7 +214,7 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
             {/* Social media connections */}
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <p className="font-mono text-xs font-black tracking-wider text-gray-500 uppercase">
+                <p className="font-sans text-xs font-black tracking-wider text-gray-500 uppercase">
                   {t("scrapbook.findMeOn")}
                 </p>
                 <div className="w-10 h-[1.5px] bg-gray-300 rounded" />
@@ -240,7 +240,7 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
               <div className="absolute top-2 right-2">
                 <HandStar className="w-5 h-5 text-[#C84B31]/30 rotate-45" />
               </div>
-              <p className="font-mono text-xs font-black tracking-wider text-gray-500 uppercase mb-2">
+              <p className="font-sans text-xs font-black tracking-wider text-gray-500 uppercase mb-2">
                 {t("scrapbook.currentlyInto")}
               </p>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
@@ -285,7 +285,7 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
                 <p className="font-gloria text-2xl font-bold text-[#1F1F1F] tracking-wide">
                   v1.2.6
                 </p>
-                <p className="font-mono text-[10px] font-bold text-gray-400 mt-1 uppercase tracking-widest">
+                <p className="font-sans text-[10px] font-bold text-gray-400 mt-1 uppercase tracking-widest">
                   {t("footer.copyright") || "Kerwin · TS full-stack engineer"}
                 </p>
               </div>
@@ -304,15 +304,15 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
             <div className="space-y-5 pt-2">
               <div className="divide-y-2 divide-dashed divide-gray-300/60">
                 {posts.length === 0 ? (
-                  <p className="text-gray-500 font-mono py-2">{t("articles.noPosts")}</p>
+                  <p className="text-gray-500 font-sans py-2">{t("articles.noPosts")}</p>
                 ) : (
                   posts.map((post) => (
                     <div key={post.slug} className="py-3.5 first:pt-0 last:pb-0 group">
                       <Link href={`/blog/${post.slug}`} className="flex justify-between items-baseline gap-4 group">
-                        <h3 className="font-mono font-bold text-[15px] md:text-[16px] text-gray-800 group-hover:text-blue-600 group-hover:underline transition-colors leading-snug">
+                        <h3 className="font-sans font-bold text-[15px] md:text-[16px] text-gray-800 group-hover:text-blue-600 group-hover:underline transition-colors leading-snug">
                           {post.title}
                         </h3>
-                        <span className="font-typewriter text-xs text-gray-400 shrink-0 font-medium select-none">
+                        <span className="font-sans text-xs text-gray-400 shrink-0 font-medium select-none">
                           {formatDate(post.date)}
                         </span>
                       </Link>

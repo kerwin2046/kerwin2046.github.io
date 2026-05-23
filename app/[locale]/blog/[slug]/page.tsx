@@ -251,7 +251,7 @@ export default async function BlogPostPage({ params }: Props) {
               </h1>
               
               {/* Lead Post Description paragraph */}
-              <p className="text-gray-600 text-base md:text-lg font-typewriter mb-6 leading-relaxed">
+              <p className="text-gray-600 text-base md:text-lg font-sans mb-6 leading-relaxed">
                 {post.description}
               </p>
             </header>
@@ -266,7 +266,7 @@ export default async function BlogPostPage({ params }: Props) {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="font-typewriter text-xs md:text-sm font-bold text-gray-500">
+                <div className="font-sans text-xs md:text-sm font-bold text-gray-500">
                   <span className="text-gray-800 font-extrabold">{post.author}</span> · {post.date} · {readingMinutes} min read
                 </div>
               </div>
@@ -316,7 +316,7 @@ export default async function BlogPostPage({ params }: Props) {
 
             {/* Bottom Back buttons */}
             <div className="mt-16 pt-8 border-t-2 border-dashed border-black/20 flex justify-between select-none">
-              <Button asChild variant="outline" className="border-[3px] border-black rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-px font-mono">
+              <Button asChild variant="outline" className="border-[3px] border-black rounded-xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-px font-sans">
                 <Link href="/blog">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   {t("backList")}

@@ -76,7 +76,7 @@ export function PostSidebar({ posts, activeSlug, locale }: PostSidebarProps) {
                     >
                       {post.title}
                     </h4>
-                    <span className="block text-[11px] font-mono font-bold text-[#C84B31] mt-1.5">
+                    <span className="block text-[11px] font-sans font-bold text-[#C84B31] mt-1.5">
                       {post.date}
                     </span>
                   </Link>

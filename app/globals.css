@@ -76,7 +76,7 @@
 
 @theme inline {
   /* 使用系统字体栈，构建时不请求外网（避免 CI/内网 无法访问 Google Fonts） */
-  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-gloria), ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", monospace;
   --font-caveat: var(--font-caveat);
   --font-typewriter: var(--font-typewriter);

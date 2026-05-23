@@ -116,7 +116,7 @@
   },
   "hero": {
     "titleName": "Kerwin",
-    "titleRole": "TS 全栈工程师",
+    "titleRole": "全栈工程师", 
     "titleFrom": "来自",
     "titleLocale": "中国",
     "description": "“一名从 19 年‘切图’进化到 26 年‘调教 AI’的全栈，深陷 TypeScript 的‘类型地牢’无法自拔，坚持用 React 和 Node.js 构建那种即便 AI 看了都要直呼‘优雅’的可维护系统，并习惯在博客里把每一次深夜踩坑的血泪史写成段子。”",

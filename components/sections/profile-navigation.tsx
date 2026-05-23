@@ -13,7 +13,7 @@ export function ProfileNavigation() {
 
   return (
     <header className="container mx-auto px-4 md:px-8 pt-6 pb-2">
-      <nav className="flex items-center justify-between max-w-7xl mx-auto font-mono">
+      <nav className="flex items-center justify-between max-w-7xl mx-auto font-sans">
         {/* Left: Hand-drawn "K." Logo */}
         <Link
           href="/"

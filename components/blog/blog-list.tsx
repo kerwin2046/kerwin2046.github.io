@@ -61,7 +61,7 @@ export function BlogList({ posts: initialPosts, categories }: BlogListProps) {
       />
 
       {filteredPosts.length === 0 ? (
-        <p className="text-gray-500 font-mono text-center py-12 select-none">{t("noPosts")}</p>
+        <p className="text-gray-500 font-sans text-center py-12 select-none">{t("noPosts")}</p>
       ) : (
         <ul className="space-y-12">
           {filteredPosts.map((post, idx) => {
@@ -130,8 +130,8 @@ export function BlogList({ posts: initialPosts, categories }: BlogListProps) {
                       </div>
 
                       {/* Card Metadata Footer */}
-                      <div className="mt-6 pt-4 border-t-2 border-dashed border-gray-200 flex flex-wrap items-center justify-between gap-4 font-mono select-none">
-                        <div className="font-typewriter text-xs text-gray-400 font-bold">
+                      <div className="mt-6 pt-4 border-t-2 border-dashed border-gray-200 flex flex-wrap items-center justify-between gap-4 font-sans select-none">
+                        <div className="font-sans text-xs text-gray-400 font-bold">
                           {post.author} · <span className="text-gray-500">{formatDate(post.date)}</span>
                         </div>
 
