@@ -37,7 +37,7 @@ export function TocNav({ items }: TocNavProps) {
   if (!items.length) return null
 
   return (
-    <aside className="hidden xl:block xl:w-64 shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] select-none">
+    <aside className="hidden xl:block xl:w-56 2xl:w-64 shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] select-none">
       {/* 3D Paper Layer stacked card shadow effect */}
       <div className="relative group">
         <div className="absolute inset-0 bg-black/5 rounded-2xl translate-x-2.5 translate-y-3 rotate-[0.5deg] -z-10 pointer-events-none" />

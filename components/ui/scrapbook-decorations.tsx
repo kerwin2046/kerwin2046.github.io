@@ -248,3 +248,106 @@ export function InkSplatBackground({ className = "text-black" }: { className?: s
     </svg>
   )
 }
+
+// PaperClip: Hand-drawn metallic paper clip
+export function PaperClip({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 48"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`w-6 h-12 text-gray-600/80 drop-shadow-[1px_2px_2px_rgba(0,0,0,0.15)] ${className}`}
+    >
+      <path d="M7 12 v20 c0 3 2 5 5 5 s5-2 5-5 V8 c0-4-3-7-7-7 S3 4 3 8 v24 c0 6 5 9 10 9 s10-3 10-9 V14" />
+    </svg>
+  )
+}
+
+// CoffeeStain: Subtle coffee ring stain
+export function CoffeeStain({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      className={`w-32 h-32 text-amber-900/10 pointer-events-none select-none ${className}`}
+    >
+      {/* Main ring (split and imperfect) */}
+      <path d="M 50 10 A 40 40 0 1 0 85 30" strokeDasharray="5 2 10 5" />
+      <path d="M 88 35 A 40 40 0 0 0 52 9" strokeDasharray="3 3 8 2" />
+      <path d="M 45 92 C 65 92, 88 78, 88 50 C 88 45, 87 40, 85 35" opacity="0.6" />
+      {/* Splashes */}
+      <circle cx="32" cy="18" r="1" fill="currentColor" />
+      <circle cx="78" cy="80" r="1.5" fill="currentColor" />
+      <circle cx="15" cy="52" r="0.8" fill="currentColor" />
+      <path d="M 22 25 C 20 28, 18 35, 19 40" strokeWidth="0.8" />
+    </svg>
+  )
+}
+
+// SystemArchitectureSketch: Hand-drawn sketchy architectural blueprint
+export function SystemArchitectureSketch({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 320 160"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`w-full h-auto text-gray-700/60 ${className}`}
+    >
+      {/* Client Box */}
+      <rect x="15" y="55" width="65" height="40" rx="6" />
+      <path d="M15 80 h65" strokeDasharray="2 2" />
+      <text x="47" y="73" fontSize="10" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">CLIENT</text>
+      <text x="47" y="90" fontSize="7" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">Next.js Edge</text>
+
+      {/* Connection arrow 1 */}
+      <path d="M 80 75 C 95 72, 100 73, 115 75" />
+      <path d="M 110 70 L 116 75 L 110 80" />
+      <text x="97" y="66" fontSize="7" fontFamily="monospace" textAnchor="middle" fill="currentColor">JSON</text>
+
+      {/* Gateway / API Box */}
+      <rect x="120" y="35" width="80" height="80" rx="8" />
+      <text x="160" y="53" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">API SERVICE</text>
+      <text x="160" y="68" fontSize="8" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">Node.js / TS</text>
+      {/* Inner stack layer */}
+      <path d="M125 78 h70" strokeDasharray="3 3" />
+      <text x="160" y="92" fontSize="7" fontFamily="monospace" textAnchor="middle" fill="currentColor">tRPC & Zod</text>
+      <text x="160" y="104" fontSize="7" fontFamily="monospace" textAnchor="middle" fill="currentColor">RAG Pipeline</text>
+
+      {/* Connection Arrow 2 (to DB) */}
+      <path d="M 200 65 C 215 62, 220 63, 235 65" />
+      <path d="M 230 60 L 236 65 L 230 70" />
+
+      {/* Connection Arrow 3 (to Redis) */}
+      <path d="M 200 90 C 215 93, 220 92, 235 90" />
+      <path d="M 230 85 L 236 90 L 230 95" />
+
+      {/* Database Cylinder */}
+      <path d="M 240 55 C 240 45, 290 45, 290 55 L 290 85 C 290 95, 240 95, 240 85 Z" />
+      <path d="M 240 55 C 240 65, 290 65, 290 55" />
+      <path d="M 240 70 C 240 80, 290 80, 290 70" />
+      <text x="265" y="60" fontSize="9" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">POSTGRES</text>
+      <text x="265" y="87" fontSize="7" fontFamily="monospace" textAnchor="middle" fill="currentColor">Prisma ORM</text>
+
+      {/* Redis Box */}
+      <rect x="240" y="105" width="50" height="30" rx="4" />
+      <text x="265" y="120" fontSize="9" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">REDIS</text>
+      <text x="265" y="131" fontSize="7" fontFamily="sans-serif" textAnchor="middle" fill="currentColor">Cache / Queue</text>
+
+      {/* Some architectural doodles / decorations */}
+      <circle cx="160" cy="142" r="3" fill="currentColor" opacity="0.3" />
+      <circle cx="175" cy="145" r="1.5" fill="currentColor" opacity="0.3" />
+      <path d="M 40 120 L 55 140 L 70 120" strokeWidth="1" strokeDasharray="1 1" opacity="0.5" />
+      <text x="55" y="115" fontSize="7" fontFamily="sans-serif" textAnchor="middle" fill="currentColor" opacity="0.4">Flow state</text>
+    </svg>
+  )
+}
+

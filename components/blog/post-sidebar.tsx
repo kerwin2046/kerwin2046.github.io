@@ -37,15 +37,15 @@ export function PostSidebar({ posts, activeSlug, locale }: PostSidebarProps) {
   }
 
   return (
-    <aside className="hidden 2xl:block 2xl:w-72 shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] select-none">
+    <aside className="hidden xl:block xl:w-60 2xl:w-72 shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] select-none">
       <div className="relative pl-6">
-        {/* Header "Recent posts" with yellow highlight line underneath */}
+        {/* Header "Recent posts" with orange highlight line underneath */}
         <div className="relative mb-8 inline-block">
           <p className="text-[17px] font-black tracking-tight text-gray-900 font-sans">
             {locale === "zh" ? "近期发布" : "Recent posts"}
           </p>
-          {/* Highlighter accent */}
-          <div className="h-[3px] w-[110%] bg-amber-500/80 absolute bottom-[-2px] left-[-5%] -z-10 rounded-full" />
+          {/* Highlighter accent - matching orange doodle underline */}
+          <div className="h-[3px] w-[110%] bg-[#FDB927]/95 absolute bottom-[-2px] left-[-5%] -z-10 rounded-full" />
         </div>
 
         {/* Sidebar posts list */}
@@ -58,9 +58,9 @@ export function PostSidebar({ posts, activeSlug, locale }: PostSidebarProps) {
               const isActive = post.slug === activeSlug
               return (
                 <li key={post.slug} className="relative">
-                  {/* Active Bullet Anchor */}
+                  {/* Active Bullet Anchor: Perfectly optically aligned at center of dotted line */}
                   {isActive && (
-                    <div className="absolute left-[-21px] top-2 w-3.5 h-3.5 bg-[#1F1F1F] rounded-full border-[2.5px] border-[#F4F1EA] shadow-[0_0_0_2.5px_rgba(0,0,0,1)] z-10 animate-pulse" />
+                    <div className="absolute left-[-23px] top-2 w-3.5 h-3.5 bg-[#1F1F1F] rounded-full border-[2.5px] border-[#F4F1EA] shadow-[0_0_0_2.5px_rgba(0,0,0,1)] z-10 animate-pulse" />
                   )}
 
                   <Link

@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function Home() {
-  const latestPosts = getPosts(3)
+  const latestPosts = getPosts(4)
 
   return (
     <main

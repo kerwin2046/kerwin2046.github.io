@@ -207,7 +207,7 @@ export default async function BlogPostPage({ params }: Props) {
       <ProfileNavigation />
 
       <article className="container mx-auto px-4 py-12 md:py-16">
-        <div className="mx-auto flex w-full max-w-[1600px] items-start gap-8 lg:gap-12">
+        <div className="mx-auto flex w-full max-w-[1600px] items-start gap-4 xl:gap-8 2xl:gap-12">
           <PostSidebar posts={posts} activeSlug={slug} locale={locale} />
 
           <div className="w-full max-w-3xl xl:flex-1">
