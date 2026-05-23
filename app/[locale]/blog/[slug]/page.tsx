@@ -261,7 +261,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border-2 border-black overflow-hidden relative shadow-[2px_2px_0px_rgba(0,0,0,1)]">
                   <img
-                    src="/images/design-mode/63407fbdc2d4ac5270385fd4_home-he.png"
+                    src="/images/person.png"
                     alt={post.author}
                     className="w-full h-full object-cover"
                   />

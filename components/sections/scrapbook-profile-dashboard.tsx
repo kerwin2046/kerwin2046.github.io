@@ -272,9 +272,9 @@ export function ScrapbookProfileDashboard({ posts }: ScrapbookProfileDashboardPr
               <ScotchTape className="top-[-8px] right-8 rotate-15" />
 
               {/* Picture Container */}
-              <div className="relative aspect-square w-[300px] max-w-full bg-[#FDB927] border-[3.5px] border-black rounded-lg overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)]">
+              <div className="relative aspect-square w-[300px] max-w-full bg-[#1A1A1A] border-[3.5px] border-black rounded-lg overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)]">
                 <img
-                  src="/images/design-mode/63407fbdc2d4ac5270385fd4_home-he.png"
+                  src="/images/person.png"
                   alt={t("hero.avatarAlt")}
                   className="w-full h-full object-cover filter contrast-[1.02] sepia-[0.05]"
                 />
