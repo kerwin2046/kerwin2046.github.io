@@ -257,5 +257,22 @@
     "metaDesc": "TS Full-Stack Engineer Kerwin's blog: front-end, back-end, AI, and lessons learned.",
     "allCategories": "All",
     "filterByCategory": "Filter by category"
+  },
+  "scrapbook": {
+    "currentlyInto": "Currently into:",
+    "into1": "TypeScript",
+    "into2": "AI / LLM",
+    "into3": "System Design",
+    "into4": "Productivity",
+    "recentlyOnBlog": "Recently on the blog",
+    "viewAllPosts": "View all posts →",
+    "now": "Now",
+    "nowBullet1": "Building in public.",
+    "nowBullet2": "Writing weekly.",
+    "nowBullet3": "Learning everyday.",
+    "nowBullet4": "Making an impact.",
+    "findMeOn": "FIND ME ON",
+    "letBuild": "Let's build\nsomething\ngreat!",
+    "keepShipping": "Keep\nShipping!"
   }
 }

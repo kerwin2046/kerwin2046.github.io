@@ -257,5 +257,22 @@
     "metaDesc": "TS 全栈工程师 Kerwin 的博客：前端、后端、AI 与踩坑记录。",
     "allCategories": "全部",
     "filterByCategory": "按分类筛选"
+  },
+  "scrapbook": {
+    "currentlyInto": "最近沉迷：",
+    "into1": "TypeScript 炫技",
+    "into2": "AI / LLM 调教",
+    "into3": "系统架构设计",
+    "into4": "极致效率工具",
+    "recentlyOnBlog": "近期博客碎碎念",
+    "viewAllPosts": "阅读所有文章 →",
+    "now": "此时此刻",
+    "nowBullet1": "在阳光下公开构建",
+    "nowBullet2": "保持每周更新博客",
+    "nowBullet3": "每日吸收技术营养",
+    "nowBullet4": "努力交付真实价值",
+    "findMeOn": "在这里能找到我",
+    "letBuild": "来，一起造点\n好玩的东西！",
+    "keepShipping": "干就完了！"
   }
 }

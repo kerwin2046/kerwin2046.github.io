@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { useTranslations } from "next-intl"
 import type { PostMeta } from "@/types"
 
@@ -35,33 +34,53 @@ export function CategoryFilter({
     return null
   }
 
+  // Alternating playful organic rotations for a realistic scrapbooked look
+  const getRotationClass = (index: number) => {
+    const rotations = [
+      "-rotate-1",
+      "rotate-1",
+      "-rotate-1.5",
+      "rotate-1.5",
+      "-rotate-[0.5deg]",
+      "rotate-[0.5deg]",
+    ]
+    return rotations[index % rotations.length]
+  }
+
   return (
-    <div className="mb-8">
-      <div className="flex flex-wrap gap-3">
-        <Button
+    <div className="mb-10 select-none">
+      <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
+        {/* 'All' filter label */}
+        <button
           onClick={() => handleCategoryClick(null)}
-          variant={selectedCategory === null ? "default" : "outline"}
-          className={`border-[3px] border-black rounded-xl px-4 py-2 font-semibold text-sm transition-all ${
+          className={`px-5 py-1.5 font-gloria text-sm font-bold border-2 border-black rounded transition-all active:scale-95 cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] ${getRotationClass(99)} ${
             selectedCategory === null
-              ? "bg-black text-white hover:bg-black/90"
-              : "bg-white hover:bg-gray-50"
+              ? "bg-[#1A1A1A] text-white"
+              : "bg-white text-gray-800 hover:text-black hover:bg-gray-50"
           }`}
         >
-          {t("allCategories")}
-        </Button>
-        {categories.map((category) => (
-          <Button
+          {t("allCategories") || "All"}
+          {selectedCategory === null && (
+            <div className="absolute -bottom-1 left-1/4 right-1/4 h-[3px] bg-yellow-300 rounded-full blur-[0.5px]" />
+          )}
+        </button>
+
+        {/* Dynamic Category Labels */}
+        {categories.map((category, idx) => (
+          <button
             key={category}
             onClick={() => handleCategoryClick(category)}
-            variant={selectedCategory === category ? "default" : "outline"}
-            className={`border-[3px] border-black rounded-xl px-4 py-2 font-semibold text-sm transition-all ${
+            className={`px-4 py-1.5 font-gloria text-sm font-bold border-2 border-black rounded transition-all active:scale-95 cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] ${getRotationClass(idx)} ${
               selectedCategory === category
-                ? "bg-black text-white hover:bg-black/90"
-                : "bg-white hover:bg-gray-50"
+                ? "bg-[#1A1A1A] text-white"
+                : "bg-white text-gray-800 hover:text-black hover:bg-gray-50"
             }`}
           >
             {category}
-          </Button>
+            {selectedCategory === category && (
+              <div className="absolute -bottom-1 left-1/4 right-1/4 h-[3px] bg-yellow-300 rounded-full blur-[0.5px]" />
+            )}
+          </button>
         ))}
       </div>
     </div>

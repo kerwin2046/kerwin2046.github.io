@@ -1,13 +1,6 @@
-import { Navigation } from "@/components/layout"
-import { DemoClient } from "@/components/demo/demo-client"
-import { getPosts } from "@/lib/content/blog"
+import { redirect } from "next/navigation"
 
 export default async function DemoPage() {
-  const posts = getPosts()
-  return (
-    <main className="min-h-screen bg-background">
-      <Navigation />
-      <DemoClient posts={posts} />
-    </main>
-  )
+  // Redirect /en/demo or /zh/demo to the new main root page /en or /zh
+  redirect("/")
 }

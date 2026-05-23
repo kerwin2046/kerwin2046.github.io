@@ -1,5 +1,9 @@
+"use client"
+
+import { useLocale } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import type { PostMeta } from "@/types"
+import { HandStar } from "@/components/ui/scrapbook-decorations"
 
 interface PostSidebarProps {
   posts: PostMeta[]
@@ -7,84 +11,103 @@ interface PostSidebarProps {
   locale: string
 }
 
-function getYear(date: string): string {
-  const match = /^(\d{4})/.exec(date.trim())
-  return match?.[1] ?? "Other"
-}
-
 export function PostSidebar({ posts, activeSlug, locale }: PostSidebarProps) {
-  const recentPosts = posts.slice(0, 12)
-  const groups = new Map<string, PostMeta[]>()
+  // Slice to get top 6 recent posts
+  const recentPosts = posts.slice(0, 6)
 
-  for (const post of posts) {
-    const year = getYear(post.date)
-    const existing = groups.get(year)
-    if (existing) {
-      existing.push(post)
-    } else {
-      groups.set(year, [post])
+  // Safely format dates
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return ""
+    const parts = dateStr.split("-")
+    if (parts.length < 3) return dateStr
+    const [_, month, day] = parts
+    const monthsEN: Record<string, string> = {
+      "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "May", "06": "Jun",
+      "07": "Jul", "08": "Aug", "09": "Sep", "10": "Oct", "11": "Nov", "12": "Dec"
     }
+    const monthsZH: Record<string, string> = {
+      "01": "1月", "02": "2月", "03": "3月", "04": "4月", "05": "5月", "06": "6月",
+      "07": "7月", "08": "8月", "09": "9月", "10": "10月", "11": "11月", "12": "12月"
+    }
+
+    if (locale === "zh") {
+      return `${monthsZH[month] || month}${day}日`
+    }
+    return `${monthsEN[month] || month} ${day}`
   }
 
-  const years = Array.from(groups.keys()).sort((a, b) => (a < b ? 1 : -1))
-  const labels =
-    locale === "zh"
-      ? { recent: "最近文章", byYear: "按年份浏览" }
-      : { recent: "Recent posts", byYear: "Browse by year" }
-
   return (
-    <aside className="hidden 2xl:block 2xl:w-72 shrink-0">
-      <div className="sticky top-28 max-h-[calc(100vh-8rem)] overflow-y-auto rounded-xl border border-black/10 bg-white p-4">
-        <p className="mb-3 text-sm font-semibold text-[#0B0B0B]">{labels.recent}</p>
-        <ul className="space-y-1.5 pb-4">
-          {recentPosts.map((post) => {
-            const isActive = post.slug === activeSlug
-            return (
-              <li key={post.slug}>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className={[
-                    "block rounded-md px-2 py-1.5 text-sm leading-6 transition-colors",
-                    isActive ? "bg-[#EEF2FF] text-[#4338CA] font-medium" : "text-[#4B5563] hover:bg-[#F9FAFB] hover:text-[#111827]",
-                  ].join(" ")}
-                >
-                  {post.title}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
+    <aside className="hidden 2xl:block 2xl:w-72 shrink-0 sticky top-28 max-h-[calc(100vh-8rem)] select-none">
+      <div className="relative pl-6">
+        {/* Header "Recent posts" with yellow highlight line underneath */}
+        <div className="relative mb-8 inline-block">
+          <p className="text-[17px] font-black tracking-tight text-gray-900 font-sans">
+            {locale === "zh" ? "近期发布" : "Recent posts"}
+          </p>
+          {/* Highlighter accent */}
+          <div className="h-[3px] w-[110%] bg-amber-500/80 absolute bottom-[-2px] left-[-5%] -z-10 rounded-full" />
+        </div>
 
-        <div className="mt-1 border-t border-black/10 pt-4">
-          <p className="mb-3 text-sm font-semibold text-[#0B0B0B]">{labels.byYear}</p>
-          <div className="space-y-3">
-            {years.map((year) => {
-              const yearPosts = groups.get(year) ?? []
+        {/* Sidebar posts list */}
+        <div className="relative">
+          {/* Dotted link chain vertical line */}
+          <div className="absolute left-[-16px] top-2.5 bottom-12 w-[2px] border-l-2 border-dotted border-black/25" />
+
+          <ul className="space-y-6">
+            {recentPosts.map((post) => {
+              const isActive = post.slug === activeSlug
               return (
-                <section key={year}>
-                  <p className="mb-1 text-sm font-semibold text-[#1F2937]">{year}</p>
-                  <ul className="space-y-1">
-                    {yearPosts.map((post) => {
-                      const isActive = post.slug === activeSlug
-                      return (
-                        <li key={post.slug}>
-                          <Link
-                            href={`/blog/${post.slug}`}
-                            className={[
-                              "line-clamp-2 block rounded-md px-2 py-1 text-xs leading-5 transition-colors",
-                              isActive ? "bg-[#EEF2FF] text-[#4338CA] font-medium" : "text-[#6B7280] hover:bg-[#F9FAFB] hover:text-[#111827]",
-                            ].join(" ")}
-                          >
-                            {post.title}
-                          </Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </section>
+                <li key={post.slug} className="relative">
+                  {/* Active Bullet Anchor */}
+                  {isActive && (
+                    <div className="absolute left-[-21px] top-2 w-3.5 h-3.5 bg-[#1F1F1F] rounded-full border-[2.5px] border-[#F4F1EA] shadow-[0_0_0_2.5px_rgba(0,0,0,1)] z-10 animate-pulse" />
+                  )}
+
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className={`block group transition-colors text-left`}
+                  >
+                    <h4
+                      className={`text-sm leading-snug font-bold ${
+                        isActive
+                          ? "text-black underline decoration-2 decoration-black/30 underline-offset-2"
+                          : "text-gray-700 hover:text-black hover:underline hover:decoration-black/15 hover:underline-offset-2"
+                      }`}
+                    >
+                      {post.title}
+                    </h4>
+                    <span className="block text-[11px] font-mono font-bold text-[#C84B31] mt-1.5">
+                      {post.date}
+                    </span>
+                  </Link>
+                </li>
               )
             })}
-          </div>
+          </ul>
+        </div>
+
+        {/* View all posts hand-drawn CTA */}
+        <div className="mt-8 pt-4 border-t-2 border-dashed border-black/10 text-left">
+          <Link
+            href="/blog"
+            className="font-gloria text-base font-bold text-blue-600 hover:text-blue-800 transition-colors inline-flex flex-col relative py-0.5"
+          >
+            <span className="flex items-center gap-1.5">
+              <span>{locale === "zh" ? "➔ 阅读所有文章" : "➔ View all posts"}</span>
+            </span>
+            {/* Hand scribble underline */}
+            <svg
+              viewBox="0 0 100 12"
+              preserveAspectRatio="none"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              className="w-full h-2 text-blue-500/40 -mt-0.5"
+            >
+              <path d="M4 8c12-2 28-3.5 45-4c15-0.5 25 1 32 3.5" />
+            </svg>
+          </Link>
         </div>
       </div>
     </aside>
