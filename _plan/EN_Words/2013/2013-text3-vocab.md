@@ -1,4 +1,3 @@
-# 2013 考研英语（二）Text 3 — 中难点词汇
 
 > 主题：瞬时决策（snap decisions）、thin slice 与克制本能反应。
 
