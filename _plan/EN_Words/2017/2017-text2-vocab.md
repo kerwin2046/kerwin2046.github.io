@@ -1,4 +1,4 @@
-# 2017 考研英语（二）Text 2 — 中难点词汇
+
 
 > 主题：父母屏幕使用对儿童互动的影响——“静止脸”实验与育儿意识形态。
 
@@ -53,7 +53,7 @@
 | **disconcerting** | adj. | 令人不安的 | it can be extremely disconcerting |
 | **still face experiment** | phr. | 静止脸实验 | the "still face experiment" |
 | **visual social feedback** | phr. | 视觉社交反馈 | not giving them any visual social feedback |
-| **responsive and sensitive** | phr. | 敏锐且敏感 | responsive and sensitive to a child’s… need |
+| **responsive and sensitive** | phr. | 敏锐且敏感 | responsive and sensitive to a  child’s… need |
 
 ---
 

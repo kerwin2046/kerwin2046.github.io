@@ -1,4 +1,3 @@
-# 2015 考研英语（二）Text 4 — 中难点词汇
 
 > 主题：奥巴马医改（Obamacare）与自愿兼职（voluntary part-time）就业变化。
 

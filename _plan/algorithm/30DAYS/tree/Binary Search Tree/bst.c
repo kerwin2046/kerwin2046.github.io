@@ -70,18 +70,7 @@ TreeNode* lastMinNodeBST(TreeNode* root, int K) {
     if(root == NULL){
         return NULL;
     }
-    // min node
-    TreeNode* minNode = root;
-    // left 
-    if(abs(minNode->val - K)  < minNode->val){
-        // update minNode
-        lastMinNodeBST(minNode->left, K);
-    }
-    if(abs(minNode->val - K)  > minNode->val){
-        // update minNode
-        lastMinNodeBST(minNode->right, K);
-    }
-    return minNode;
+   
 }
 
 

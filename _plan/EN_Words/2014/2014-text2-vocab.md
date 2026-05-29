@@ -1,4 +1,3 @@
-# 2014 考研英语（二）Text 2 — 中难点词汇
 
 > 主题：自我提升（self-enhancement）、illusory superiority 与外貌认知偏差。
 
